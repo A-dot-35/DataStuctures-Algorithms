@@ -99,7 +99,7 @@ def trace_path(journey_dict):
     Input: List of distinct Integers
     Output: 2D list with pairs where a+b = c+d 
     Time Complexity: O(n^2)
-    Space Complesity: O(n)
+    Space Complexity: O(n)
 '''
 def find_pair(my_list):
 
@@ -123,7 +123,7 @@ def find_pair(my_list):
     Input: List of positive and negative integers
     Output: True or False wheather a sublist exist where the sum = 0 
     Time Complexity: O(n)
-    Space Complesity: O(n)
+    Space Complexity: O(n)
 '''
 def find_sub_zero(my_list):   
     my_dict = {}
@@ -141,7 +141,7 @@ def find_sub_zero(my_list):
     Input: dictionary of words as list and string of char containing up to two words
     Output: True or False words are found in dictionary given 
     Time Complexity: O(n^2)
-    Space Complesity: O(n)
+    Space Complexity: O(n)
 '''
 
 def is_formation_possible(lst, word):
@@ -160,3 +160,30 @@ def is_formation_possible(lst, word):
             return True
     
     return False
+
+'''
+    Description: Function that resturns two numbers within a list that up to k
+    Input: list of integers and number k
+    Output: a list of two numbers that add up to k
+    Time Complexity: O(n)
+    Space Complexity: O(n)
+'''
+def findSum(lst, k):
+    # Write your code here
+    if(len(lst) < 2):
+        return []
+    myDict = {}
+    res = []
+
+    for i in range(len(lst)):
+        myDict[lst[i]] = i
+    
+    for num in range(len(lst)):
+        target = k - lst[num]
+        if(myDict.get(target) != None):
+            if(myDict.get(target) != num):
+                res.append(lst[num])
+                res.append(target)
+                return res
+    
+    return res
