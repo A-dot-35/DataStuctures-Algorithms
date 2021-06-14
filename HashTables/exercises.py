@@ -78,8 +78,6 @@ def find_symmetric(pair_list):
 def trace_path(journey_dict):
     if(len(journey_dict) == 0):
         return None
-    if(len(journey_dict) == 1):
-        return [[]]
     starting_point = None
     reverse_dict = {}
     result = []
@@ -95,3 +93,70 @@ def trace_path(journey_dict):
         result.append([starting_point, journey_dict[starting_point]])
         starting_point = journey_dict[starting_point]
     return result
+
+'''
+    Description: Function that returns two pairs such that a+b = c+d. Return only the first two pairs found.
+    Input: List of distinct Integers
+    Output: 2D list with pairs where a+b = c+d 
+    Time Complexity: O(n^2)
+    Space Complesity: O(n)
+'''
+def find_pair(my_list):
+
+    if(len(my_list) < 4):
+        return None
+    myDict = {}
+    result = []
+    for i in range(len(my_list)):
+        for j in range(i+1,len(my_list)):
+            pair_sum = my_list[i] + my_list[j]
+            if(pair_sum not in myDict):
+                myDict[pair_sum] = [my_list[i],my_list[j]]
+            else:
+                result.append(myDict[pair_sum])
+                result.append([my_list[i],my_list[j]])
+                return result
+    return result
+
+'''
+    Description: Function that returns True or False if the sublist of a list amounts to zero
+    Input: List of positive and negative integers
+    Output: True or False wheather a sublist exist where the sum = 0 
+    Time Complexity: O(n)
+    Space Complesity: O(n)
+'''
+def find_sub_zero(my_list):   
+    my_dict = {}
+    total_sum = 0
+
+    for elem in my_list:
+        total_sum += elem
+        if elem is 0 or total_sum is 0 or my_dict.get(total_sum) != None:
+            return True
+        my_dict[total_sum] = elem
+    return False
+'''
+    Description: Function that returns True or False if it finds the words from an input in the dictionary of words given.
+    The input of the word would only contain two words.
+    Input: dictionary of words as list and string of char containing up to two words
+    Output: True or False words are found in dictionary given 
+    Time Complexity: O(n^2)
+    Space Complesity: O(n)
+'''
+
+def is_formation_possible(lst, word):
+    # Write your code here
+    myDict = {}
+
+    for w in range(len(lst)):
+        myDict[lst[w]] = w
+    
+    for s in range(1,len(word)):
+        word_one = word[0:s]
+        word_two = word[s:len(word)]
+        print(word_one)
+        print(word_two)
+        if(myDict.get(word_one) != None and myDict.get(word_two)!= None):
+            return True
+    
+    return False
