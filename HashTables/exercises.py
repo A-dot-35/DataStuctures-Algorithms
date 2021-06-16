@@ -252,3 +252,31 @@ def remove_duplicates(lst):
     
     return 
 
+def union(list1, list2):
+    # Write your code here
+    temp = list1.get_head()
+    while(temp.next_element != None):
+        temp = temp.next_element 
+    temp.next_element = list2.get_head()
+    list1.remove_duplicates()
+
+    return list1
+
+# Returns a list containing the intersection of list1 and list2
+
+
+def intersection(list1, list2):
+    # Write your code here
+    ll_dict = {}
+    result = LinkedList()
+    temp = list1.get_head()
+    while(temp != None):
+        ll_dict[temp.data] = temp
+        temp = temp.next_element
+    temp = list2.get_head()
+    while(temp != None):
+        if(ll_dict.get(temp.data) != None):
+            result.insert_at_head(temp.data)
+        temp = temp.next_element
+    
+    return result
