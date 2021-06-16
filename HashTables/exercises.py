@@ -187,3 +187,68 @@ def findSum(lst, k):
                 return res
     
     return res
+
+'''
+    Description: A function that returns the first unique integer in the list. Unique means the number does not repeat and 
+    appears only once in the whole list.
+    Input: List of integers
+    Time Complexity: O(n+n) => O(n)
+    Space Complexity: O(n)
+'''
+def first_unique(lst):
+    if(len(lst) == 0):
+        return -1
+    dict_count = {}
+    for num in lst:
+        if(dict_count.get(num) == None):
+            dict_count[num] = 1
+        else:
+            dict_count[num] += 1
+
+    for num in lst:
+        if(dict_count[num] == 1):
+            return num
+        
+    return -1 
+'''
+    Description: this function returns true or false if there is a loop in a linked list.
+    Input: Linked list
+    Output: Boolean stating if there is a loop or not
+    Time Complexity: O(n) worst O(n^2)
+    Space Complexity: O(n)
+'''
+
+def detect_loop(lst):
+    # Write your code here
+    temp = lst.get_head()
+    myDict = {}
+    while(temp != None):
+        if(myDict.get(temp) != None):
+            return True 
+        myDict[temp] = temp.data
+        temp = temp.next_element
+    return False
+'''
+    Description: This function removes duplicates from a linked list.
+    Input: Linked List
+    Output: Linked List
+    Time Complexity: O(n)
+    Space Complexit: O(n)
+'''
+
+
+def remove_duplicates(lst):
+    prev = None 
+    temp = lst.get_head()
+    myDict = {}
+    while(temp != None):
+        if(myDict.get(temp.data) != None):
+            prev.next_element = temp.next_element
+            temp = temp.next_element
+        else:
+            myDict[temp.data] = temp
+            prev = temp
+            temp = temp.next_element
+    
+    return 
+
